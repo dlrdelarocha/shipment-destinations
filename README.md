@@ -59,32 +59,18 @@ Make sure to place the input files (destinations.file and drivers.file) in the p
  Enter the file path for drivers: drivers.file
 ```
 
-```json
-{
-  "total_ss_score": 38,
-  "assignments": {
-    "456 Elm St,Los Angeles, CA": {
-      "driver_name": "David Wilson",
-      "ss_score": 9
-    },
-    "123 Main St,New York,NY": {
-      "driver_name": "Sarah Johnson",
-      "ss_score": 8
-    },
-    "789 Oak St, Chicago, IL": {
-      "driver_name": "Michael Brown",
-      "ss_score": 8
-    },
-    "654 Pine St, Philadelphia, PA": {
-      "driver_name": "John Smith",
-      "ss_score": 7
-    },
-    "321 Maple Ave, Houston, TX": {
-      "driver_name": "Emily Davis",
-      "ss_score": 6
-    }
-  }
-}
+```bash
++---------------+-------------------------------+-------------------+
+| Driver Name   | Shipment Address              | Suitability Score |
++---------------+-------------------------------+-------------------+
+| David Wilson  | 456 Elm St,Los Angeles, CA    | 9                 |
+| Sarah Johnson | 123 Main St,New York,NY       | 8                 |
+| Michael Brown | 789 Oak St, Chicago, IL       | 8                 |
+| John Smith    | 654 Pine St, Philadelphia, PA | 7                 |
+| Emily Davis   | 321 Maple Ave, Houston, TX    | 6                 |
++---------------+-------------------------------+-------------------+
+| Total Suitability Score: 38                                       |
++---------------+-------------------------------+-------------------+
 ```
 
 ## License

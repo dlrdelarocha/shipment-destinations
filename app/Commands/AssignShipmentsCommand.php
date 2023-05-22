@@ -9,6 +9,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Helper\TableCell;
+use Symfony\Component\Console\Helper\TableSeparator;
 
 class AssignShipmentsCommand extends Command
 {
@@ -23,7 +26,7 @@ class AssignShipmentsCommand extends Command
         $shipmentsFile = $this->askForFile($input, $output, 'Enter the file path for shipment destinations: ');
 
         /**
-         * @create a class to manage files
+         * @todo Create a class to manage files
          */
         if (empty($shipmentsFile) || !$this->fileExists($shipmentsFile)) {
             $output->writeln('The specified shipments file does not exist.');
@@ -52,7 +55,16 @@ class AssignShipmentsCommand extends Command
 
         $assign = new AssignShipmentDestination($destinations, $drivers);
 
-        $output->writeln(json_encode($assign->run(), JSON_PRETTY_PRINT));
+        $assignedShipments = $assign->run();
+
+        $table = new Table($output);
+        $table
+            ->setHeaders(['Driver Name', 'Shipment Address', 'Suitability Score'])
+            ->setRows($assignedShipments['assignments'])
+            ->addRow(new TableSeparator())
+            ->addRow([new TableCell("Total Suitability Score: {$assignedShipments['total_suitability_score']}", ['colspan' => 3])]);
+
+        $table->render();
 
         return Command::SUCCESS;
     }

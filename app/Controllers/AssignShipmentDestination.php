@@ -36,19 +36,21 @@ class AssignShipmentDestination
                 }
             }
 
+            /** @todo Create a Response or Assignment class to give a better format to the code's response.  */
             if ($bestDriver !== null) {
                 $assignments[$destination]['driver_name'] = $bestDriver;
-                $assignments[$destination]['ss_score'] = $bestSS;
+                $assignments[$destination]['shipment_destination'] = $destination;
+                $assignments[$destination]['suitability_score'] = $bestSS;
                 $totalSS += $bestSS;
             }
         }
 
-        //order by ss_score
+        //ordered by ss_score
         uasort($assignments, function ($a, $b) {
-            return $b['ss_score'] <=> $a['ss_score'];
+            return $b['suitability_score'] <=> $a['suitability_score'];
         });
 
-        return ['total_ss_score' => $totalSS, 'assignments' => $assignments];
+        return ['total_suitability_score' => $totalSS, 'assignments' => $assignments];
     }
 
     private function calculateSuitabilityScore($destination, $driver): float|int
