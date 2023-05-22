@@ -11,19 +11,19 @@ This project assigns shipment destinations to drivers, maximizing the total suit
 
 Follow the instructions below to set up and run the project:
 
-### 1. Clone the repository
+### Clone the repository
 
 ```bash
 git clone https://github.com/dlrdelarocha/shipment-destinations
 ```
 
-### 2. Navigate to the project directory
+### Navigate to the project directory
 
 ```bash
 cd shipment-destinations
 ```
 
-### 3. **Build the Docker container**
+### **Build the Docker container**
 
 ```bash
 docker-compose build
@@ -31,20 +31,20 @@ docker-compose build
 
 ## Running the Project
 
-### 1. Start the Docker container
+### Start the Docker container
 
 ```bash
 docker-compose up -d
 ```
 This command will start the Docker container in detached mode.
 
-### 2. Install composer dependencies
+### Install composer dependencies
 
 ```bash
 docker-compose run --rm app composer install 
 ```
 
-### 2. Execute the project
+### Execute the project
 ```bash
 docker-compose exec app php main.php  assign:shipments
 ```
