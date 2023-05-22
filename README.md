@@ -14,7 +14,7 @@ Follow the instructions below to set up and run the project:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/shipment-destinations.git\
+git clone https://github.com/dlrdelarocha/shipment-destinations
 ```
 
 ### 2. Navigate to the project directory
