@@ -25,9 +25,12 @@ class AssignShipmentDestination
             $bestSS = 0;
 
             foreach ($this->drivers->getAllDrivers() as $driver) {
-                $ss = $this->calculateSuitabilityScore($destination, $driver);
+                if (in_array($driver, array_column($assignments, 'driver_name'))) {
+                    continue;
+                }
 
-                if ($ss > $bestSS && !in_array($driver, $assignments)) {
+                $ss = $this->calculateSuitabilityScore($destination, $driver);
+                if ($ss > $bestSS) {
                     $bestDriver = $driver;
                     $bestSS = $ss;
                 }
@@ -35,17 +38,17 @@ class AssignShipmentDestination
 
             if ($bestDriver !== null) {
                 $assignments[$destination]['driver_name'] = $bestDriver;
-                $assignments[$destination]['best_ss'] = $bestSS;
+                $assignments[$destination]['ss_score'] = $bestSS;
                 $totalSS += $bestSS;
             }
         }
 
-        //order by best_ss
+        //order by ss_score
         uasort($assignments, function ($a, $b) {
-            return $b['best_ss'] <=> $a['best_ss'];
+            return $b['ss_score'] <=> $a['ss_score'];
         });
 
-        return ['total_ss' => $totalSS, 'assignments' => $assignments];
+        return ['total_ss_score' => $totalSS, 'assignments' => $assignments];
     }
 
     private function calculateSuitabilityScore($destination, $driver): float|int

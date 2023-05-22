@@ -20,18 +20,12 @@ class AssignShipmentsCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-
-        /** uncomment to test without hardcoded files. */
         $shipmentsFile = $this->askForFile($input, $output, 'Enter the file path for shipment destinations: ');
-
-        //testing
-//        $shipmentsFile = 'destinations.file';
-//        $driversFile = 'drivers.file';
 
         /**
          * @create a class to manage files
          */
-        if (!$this->fileExists($shipmentsFile)) {
+        if (empty($shipmentsFile) || !$this->fileExists($shipmentsFile)) {
             $output->writeln('The specified shipments file does not exist.');
             return Command::FAILURE;
         }
@@ -40,7 +34,7 @@ class AssignShipmentsCommand extends Command
 
         $driversFile = $this->askForFile($input, $output, 'Enter the file path for drivers: ');
 
-        if (!$this->fileExists($shipmentsFile)) {
+        if (empty($driversFile) || !$this->fileExists($driversFile)) {
             $output->writeln('The specified shipments file does not exist.');
             return Command::FAILURE;
         }
@@ -49,7 +43,7 @@ class AssignShipmentsCommand extends Command
 
         /**
          * @todo Validate file Input
-         * Check if there are duplicated names or address
+         * Check if there are duplicated names or addresses
          */
 
         $destinations = new ShipmentDestination($shipmentsDestinations);
@@ -58,7 +52,6 @@ class AssignShipmentsCommand extends Command
 
         $assign = new AssignShipmentDestination($destinations, $drivers);
 
-        $output->writeln('Whoa!');
         $output->writeln(json_encode($assign->run(), JSON_PRETTY_PRINT));
 
         return Command::SUCCESS;
@@ -89,7 +82,7 @@ class AssignShipmentsCommand extends Command
         return file_exists($filename) && is_file($filename);
     }
 
-    private function askForFile(InputInterface $input, OutputInterface $output, string $message): string
+    private function askForFile(InputInterface $input, OutputInterface $output, string $message): string|null
     {
         $helper = $this->getHelper('question');
         $question = new Question($message);
