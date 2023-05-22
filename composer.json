@@ -1,0 +1,27 @@
+{
+    "name": "delarocha/shipment-destinations",
+    "description": "Platform Science Code Exercise",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alberto De la Rocha",
+            "email": "delarocha.alberto01@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/console": "^5.4",
+        "larapack/dd": "1.*"
+    },
+    "config": {
+        "autoloader-psr-4": {
+            "": "app/"
+        }
+    }
+}
