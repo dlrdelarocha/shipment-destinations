@@ -75,35 +75,38 @@ Make sure to place the input files (destinations.file and drivers.file) in the p
 
 ## License
 
-This project is licensed under the MIT License.
+## SDE Code Exercise: Shipment Destination Assignment
 
-SDE Code Exercise: Shipment Destination Assignment
-Problem Description
+### Problem Description
 Our sales team has secured a deal with Acme Inc. to become their exclusive provider for routing product shipments via 3rd party trucking fleets. However, we can only route one shipment to one driver per day. Our data scientists have developed a mathematical model to determine the best drivers for each shipment, based on the suitability score.
 
-Algorithm
+### Algorithm
 The algorithm for calculating the suitability score (SS) is as follows:
+- If the length of the shipment's destination street name is even, the base SS is the number of vowels in the driver's name multiplied by 1.5.
+- If the length of the shipment's destination street name is odd, the base SS is the number of consonants in the driver's name multiplied by 1.
+- If the length of the shipment's destination street name shares any common factors (besides 1) with the length of the driver's name, the SS is increased by 50% above the base SS.
 
-If the length of the shipment's destination street name is even, the base SS is the number of vowels in the driver's name multiplied by 1.5.
-If the length of the shipment's destination street name is odd, the base SS is the number of consonants in the driver's name multiplied by 1.
-If the length of the shipment's destination street name shares any common factors (besides 1) with the length of the driver's name, the SS is increased by 50% above the base SS.
-Task
+### Task
 Write an application that assigns shipment destinations to drivers, maximizing the total suitability score over all drivers. The application should take two newline-separated files as input: one containing the street addresses of the shipment destinations and the other containing the names of the drivers. The output should be the total suitability score and the matching between shipment destinations and drivers.
 
-Requirements
-The application should be implemented in the language of your choice.
-You may make use of any existing open-source libraries.
-Handle both upper and lower case names.
-The application should run on the command line.
-Deliverables
+### Requirements
+- The application should be implemented in the language of your choice.
+- You may make use of any existing open-source libraries.
+- Handle both upper and lower case names.
+- The application should run on the command line.
+
+### Deliverables
 Please provide the following deliverables using a public GitHub (or similar) repository:
 
-Full source code, including any additional code not part of the normal program run (e.g., build scripts).
-Clear instructions on how to build and run the application.
-Evaluation
+1. Full source code, including any additional code not part of the normal program run (e.g., build scripts).
+2. Clear instructions on how to build and run the application.
+
+### Evaluation
 Your solution will be evaluated based on the following criteria:
 
-Code craftsmanship.
-Problem-solving approach and explanation.
-Code organization and readability.
-Quality of instructions.
+- Code craftsmanship.
+- Problem-solving approach and explanation.
+- Code organization and readability.
+- Quality of instructions.
+
+
